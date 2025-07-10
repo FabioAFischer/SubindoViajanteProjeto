@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.projetoViajante.dto.MochilaDTO;
 import com.projetoViajante.entity.Mochila;
+import com.projetoViajante.entity.MochilaItem;
 import com.projetoViajante.entity.Usuario;
 import com.projetoViajante.entity.Viagem;
 
@@ -45,7 +46,8 @@ public class MochilaMapper {
         }
 
         if (entity.getMochilaItens() != null && !entity.getMochilaItens().isEmpty()) {
-            dto.setMochilaItem(entity.getMochilaItens().get(0)); 
+            MochilaItem primeiroItem = entity.getMochilaItens().get(0);
+            dto.setMochilaItemId(primeiroItem.getId());
         }
 
         return dto;

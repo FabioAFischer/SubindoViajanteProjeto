@@ -38,7 +38,6 @@ public class DespesaController {
         }
     }
 
-    // buscar pelo ID da Viagem
     @GetMapping("/{idViagem}")
     public ResponseEntity<List<Despesa>> buscarDespesa(@PathVariable Long idViagem) {
 
@@ -74,17 +73,4 @@ public class DespesaController {
         }
     }
 
-    /*
-    @DeleteMapping("/{idDespesa}/usuario/{idUsuario}")
-    public ResponseEntity<?> deletarDespesa(
-            @PathVariable("idDespesa") Long idDespesa,
-            @PathVariable("idUsuario") Long idUsuario) {
-        try {
-            despesaServiceImp.deletarDespesa(idDespesa, idUsuario);
-            return ResponseEntity.noContent().build();
-        } catch (Exception error) {
-            return ResponseEntity.status(403).body(error.getMessage());
-        }
-    }
-    */
 }

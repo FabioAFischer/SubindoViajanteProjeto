@@ -1,30 +1,66 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./Componentes/Login/Login";
-import Menu from "./Componentes/Menu/Menu";
-import Viagem from "./Componentes/Viagem/Viagem";
-import Mochila from "./Componentes/Mochila/Mochila";
-import Despesas from "./Componentes/Despesas/Despesas";
-import Configuracoes from "./Componentes/Configuracoes/Configuracoes";
-import Cadastro from "./Componentes/Cadastro/Cadastro";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./pages/Usuario/Login/Login";
+import Cadastro from "./pages/Usuario/Cadastro/Cadastro";
+import Homepage from "./pages/Homepage/Homepage";
+import TelaInicial from "./pages/Viagem/TelaInicial/TelaInicial";
+import Viagens from "./pages/Viagem/NovaViagem/Viagens";
+import Mochilas from "./pages/Viagem/NovaMochila/Mochilas";
+import Despesas from "./pages/Viagem/NovaDespesa/Despesas";
+import Configuracoes from "./components/Configurações/Configuracoes";
 
-function App() {
-  const [usuario, setUsuario] = useState(null);
+console.log({
+  Homepage,
+  Login,
+  Cadastro,
+  TelaInicial,
+  Viagens,
+  Mochilas,
+  Despesas,
+});
+console.log({
+  Homepage,
+  Login,
+  Cadastro,
+  TelaInicial,
+  Viagens,
+  Mochilas,
+  Despesas,
+});
+
+function AppRoutes() {
+  const location = useLocation();
+
+  const hideNavbarRoutes = ["/", "/login", "/cadastro"];
+  const shouldShowNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   return (
-    <Router>
+    <>
+      {shouldShowNavbar && <Navbar />}
+
       <Routes>
-        <Route path="/" element={<Login setUsuario={setUsuario} />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/menu" element={usuario ? <Menu /> : <Navigate to="/" replace />} />
-        <Route path="/viagens" element={usuario ? <Viagem usuario={usuario} /> : <Navigate to="/" replace />} />
-        <Route path="/mochila" element={usuario ? <Mochila usuario={usuario} /> : <Navigate to="/" replace />} />
-        <Route path="/despesas" element={usuario ? <Despesas usuario={usuario} /> : <Navigate to="/" replace />} />
-        
-        <Route path="/configuracoes" element={usuario ? <Configuracoes usuario={usuario} setUsuario={setUsuario} /> : <Navigate to="/" replace />} />
-        
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/telainicial" element={<TelaInicial />} />
+        <Route path="/viagens" element={<Viagens />} />
+        <Route path="/mochilas" element={<Mochilas />} />
+        <Route path="/configuracoes" element={<Configuracoes />} />
+        <Route path="/despesas" element={<Despesas />} />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }

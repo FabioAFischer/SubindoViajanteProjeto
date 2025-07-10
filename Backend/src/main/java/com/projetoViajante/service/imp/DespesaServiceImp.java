@@ -33,7 +33,6 @@ public class DespesaServiceImp implements DespesaService {
 
         Despesa despesa = new Despesa();
         despesa.setNome(despesaDTO.getNome());
-        despesa.setQuantidade(despesaDTO.getQuantidade());
         despesa.setPreco(despesaDTO.getPreco());
         despesa.setViagem(viagem);
         despesa.setUsuario(viagem.getUsuario());
@@ -53,7 +52,6 @@ public class DespesaServiceImp implements DespesaService {
                 .orElseThrow(() -> new RuntimeException("Despesa não encontrada com o ID: " + idDespesa));
 
         despesa.setNome(despesaDTO.getNome());
-        despesa.setQuantidade(despesaDTO.getQuantidade());
         despesa.setPreco(despesaDTO.getPreco());
 
         return despesaRepo.save(despesa);
@@ -63,25 +61,5 @@ public class DespesaServiceImp implements DespesaService {
     public void deletarDespesa(Long idDespesa) {
         despesaRepo.deleteById(idDespesa);
     }
-
-    /*
-    @Override
-    public void deletarDespesa(Long idDespesa, Long idUsuario) {
-        
-        Optional<Despesa> optionalDespesa = despesaRepo.findById(idDespesa);
-
-        if (optionalDespesa.isEmpty()) {
-            throw new RuntimeException("Despesa não encontrada com o ID: " + idDespesa);
-        }
-
-        Despesa despesa = optionalDespesa.get();
-
-        if (!despesa.getUsuario().getId().equals(idUsuario)) {
-            throw new RuntimeException("Usuário não tem permissão para deletar esta viagem.");
-        }
-
-        despesaRepo.deleteById(idDespesa);
-    }
-    */
 
 }

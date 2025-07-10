@@ -7,12 +7,11 @@ import com.projetoViajante.entity.MochilaItem;
 
 public interface MochilaItemService {
 
-    MochilaItem salvarMochilaItem (MochilaItemDTO mochilaItemDTO);
+    MochilaItem salvarMochilaItem(MochilaItemDTO mochilaItemDTO);
 
-    List<MochilaItem> listarMochilaItem (Long mochila_id);
+    List<MochilaItem> listarMochilaItem(Long mochilaId);
 
-    MochilaItem atualizarMochilaItem (Long id, MochilaItemDTO mochilaItemDTO);
+    MochilaItem atualizarMochilaItem(Long id, MochilaItemDTO mochilaItemDTO);
 
-    void deletarMochilaItem (Long idMochilaItem);
-    //void deletarMochilaItem (Long id, Long mochilaItem_id);
+    void deletarMochilaItem(Long idMochilaItem);
 }

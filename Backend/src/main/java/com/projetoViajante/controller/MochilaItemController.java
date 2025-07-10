@@ -23,13 +23,11 @@ import com.projetoViajante.service.imp.MochilaServiceImp;
 @RequestMapping("/mochilaItem")
 public class MochilaItemController {
 
-    private final MochilaServiceImp mochilaServiceImp;
 
     private final MochilaItemServiceImp mochilaItemServiceImp;
 
     public MochilaItemController(MochilaItemServiceImp mochilaItemServiceImp, MochilaServiceImp mochilaServiceImp) {
         this.mochilaItemServiceImp = mochilaItemServiceImp;
-        this.mochilaServiceImp = mochilaServiceImp;
     }
 
     @PostMapping
@@ -42,7 +40,6 @@ public class MochilaItemController {
         }
     }
 
-    // buscar pelo ID da Mochila
     @GetMapping("/{idMochila}")
     public ResponseEntity<List<MochilaItem>> buscarMochilaItem(@PathVariable Long idMochila) {
         

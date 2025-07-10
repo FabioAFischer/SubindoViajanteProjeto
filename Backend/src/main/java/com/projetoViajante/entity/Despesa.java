@@ -1,5 +1,6 @@
 package com.projetoViajante.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -25,12 +26,11 @@ public class Despesa {
     private Long id;
 
     private String nome;
-    private Long quantidade;
     private Long preco;
 
     @ManyToOne
-    @JsonIgnore 
     @JoinColumn(name = "viagem_id")
+    @JsonBackReference
     private Viagem viagem;
 
     @ManyToOne
